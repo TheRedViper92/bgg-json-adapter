@@ -2,8 +2,10 @@ package pl.spartancode.bggconnection.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Service;
 import pl.spartancode.bggconnection.model.Items;
 
+@Service
 public class JSONConverter implements Converter{
     @Override
     public String convertFromItems(Items items) throws JsonProcessingException {

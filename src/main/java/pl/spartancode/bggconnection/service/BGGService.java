@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,16 @@ public class BGGService {
 
     @Autowired
     private XmlConverter xmlConverter;
+    @Autowired
     private JSONConverter jsonConverter;
 
     @Value("${bgg.api.url}")
     private String bggApiUrl;
 
+    @Cacheable(
+            value = "gameByIdCache",
+            key = "#gameId"
+    )
     public String getGameById(String gameId) {
         WebClient webClient = WebClient.builder()
                 .baseUrl(bggApiUrl)
