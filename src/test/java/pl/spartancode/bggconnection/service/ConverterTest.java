@@ -86,9 +86,9 @@ public class ConverterTest {
         assertThat(item.getPlayingtime())
                 .isNotNull()
                 .hasFieldOrPropertyWithValue("value", "240");
-        assertThat(item.getMinplayers()).isEqualTo("240");
-        assertThat(item.getMaxplayers()).isEqualTo("240");
-        assertThat(item.getMinage()).isEqualTo("14");
+        assertThat(item.getMinplayers()).isNotNull().hasFieldOrPropertyWithValue("value", "3");
+        assertThat(item.getMaxplayers()).isNotNull().hasFieldOrPropertyWithValue("value", "5");
+        assertThat(item.getMinage()).isNotNull().hasFieldOrPropertyWithValue("value", "14");
 
         var links = item.getLink();
         assertThat(links).isNotNull()
